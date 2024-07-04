@@ -1,16 +1,22 @@
 
 
 
+import { Outlet } from 'react-router-dom'
 import './App.css'
-import User from './User'
+
 
 function App() {
  
 
   return (
     <>
-      
-      <User></User>
+      <nav>
+                <h1>hi</h1>
+            </nav>
+      <Outlet></Outlet>
+      <footer>
+                <h1>hi</h1>
+            </footer>
       
     </>
   )
