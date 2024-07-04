@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
 const User = () => {
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [showAll, setShowAll] = useState(false);
 
     useEffect(() => {
         const getData = async () => {
@@ -21,15 +21,19 @@ const User = () => {
         setSelectedUser(user);
     };
 
+    const toggleShowAll = () => {
+        setShowAll(!showAll);
+    };
+
     return (
-        <div className="flex">
-            <div>
+        <div>
+            <div id="user" className="flex flex-col lg:flex-row justify-between ">
+            <div className="grid lg:grid-cols-2 grid-cols-1 justify-between items-center gap-10">
                 {loading ? (
                     <div className="loader">Loading...</div> // You can style this as needed
                 ) : (
                     <>
-                        <h1>{users.length}</h1>
-                        {users.slice(9, 100).map(user => (
+                        {users.slice(9, showAll ? users.length : 17).map(user => (
                             <div key={user.id} className="card card-side bg-base-100 shadow-xl" onClick={() => handleCardClick(user)}>
                                 <figure>
                                     <img className="avatar rounded-full"
@@ -44,7 +48,9 @@ const User = () => {
                         ))}
                     </>
                 )}
+                 
             </div>
+           
             {selectedUser && (
                 <div className="ml-4 p-4 border border-gray-300 rounded-lg">
                     <h2 className="text-2xl font-bold mb-4">User Details</h2>
@@ -59,6 +65,18 @@ const User = () => {
                     <p><strong>Bio:</strong> {selectedUser.Bio}</p>
                 </div>
             )}
+            
+        </div>
+        <div>
+        {!loading && users.length > 10 && (
+       <button 
+           className="mt-4 p-2 bg-blue-500 text-white rounded"
+           onClick={toggleShowAll}
+       >
+           {showAll ? "Show Less" : "Show All"} 
+       </button>
+   )}
+        </div>
         </div>
     );
 };
