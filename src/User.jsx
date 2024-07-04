@@ -27,22 +27,22 @@ const User = () => {
 
     return (
         <div>
-            <div id="user" className="flex flex-col lg:flex-row justify-between ">
+            <div id="user" className="flex flex-col lg:flex-row justify-between gap-7 ">
             <div className="grid lg:grid-cols-2 grid-cols-1 justify-between items-center gap-10">
                 {loading ? (
-                    <div className="loader">Loading...</div> // You can style this as needed
+                    <div className="loader "><span className="loading  loading-spinner loading-lg"></span></div> // You can style this as needed
                 ) : (
                     <>
                         {users.slice(9, showAll ? users.length : 17).map(user => (
-                            <div key={user.id} className="card card-side bg-base-100 shadow-xl" onClick={() => handleCardClick(user)}>
+                            <div key={user.id} className="card card-side  shadow-xl bg-red-400" onClick={() => handleCardClick(user)}>
                                 <figure>
                                     <img className="avatar rounded-full"
                                         src={user.avatar}
                                         alt="Avatar" />
                                 </figure>
                                 <div className="card-body">
-                                    <h2 className="card-title">{user.profile.username}</h2>
-                                    <p className="card-title text-base">{user.jobTitle}</p>
+                                    <h2 className="lg:card-title hidden lg:block">{user.profile.username}</h2>
+                                    <p className="lg:card-title lg:text-base md:card-title text-xs ">{user.jobTitle}</p>
                                 </div>
                             </div>
                         ))}
@@ -52,7 +52,7 @@ const User = () => {
             </div>
            
             {selectedUser && (
-                <div className="ml-4 p-4 border border-gray-300 rounded-lg">
+                <div className="ml-4 p-4 border border-gray-300 bg-yellow-200 rounded-lg">
                     <h2 className="text-2xl font-bold mb-4">User Details</h2>
                     <img className="avatar rounded-full mb-4"
                         src={selectedUser.avatar}

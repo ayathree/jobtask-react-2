@@ -11,10 +11,12 @@ function App() {
  
 
   return (
-    <div className="container mx-auto lg:px-6 py-5 px-2 ">
-     <div className='mb-10'>
-     <Navbar></Navbar>
-     </div>
+    <div className="">
+    <div className='mb-10'>
+    <Navbar></Navbar>
+    </div>
+     
+    
      <div className='mb-10'>
      <Outlet></Outlet>
      </div>
